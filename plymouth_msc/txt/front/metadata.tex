@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PDF-METADATA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\RevisionInfo}{no revision info available}
+\InputIfFileExists{.gitRevision}{}{}
+
+
+\def\Author{}
+\def\StudentNumber{}
+
+\def\School{School of Computing and Mathematics}
+\def\Faculty{Faculty of Science \& Environment}
+\def\Degree{Master of Science (MSc.)}
+\def\Studies{Network Systems Engineering}
+\def\Title{}
+\def\Supervisor{}
+\def\SecondSupervisor{}
+\def\Date{\today}
+
+\def\Keywords{}
+
+\hypersetup{  
+  pdfinfo={
+    Author={\Author},
+    Title={\Title},
+    Date={\Date},
+    Keywords={\Keywords},
+  }  
+}
+
+\title{\Title}
+\author{\Author}
+
+% Uncomment the following line to have empty revision information
+% This is usually a sign of getting close to submission :-)
+\renewcommand{\RevisionInfo}{}

@@ -1,0 +1,62 @@
+% Declaration of completion to be included in dissertation
+% Note, that due to format, there is less vertical space available
+% and all of this just to have it shifted slightly when printed twosided...
+%\newgeometry{textheight=\textheight+\footskip, top=1in+\voffset}
+\newgeometry{bottom=2cm,includefoot}
+%\fixme{Find correct value for bottom distance. Something like paperheight-footerheight}
+
+\newcommand*{\SignatureAndDate}[1]{%
+    \par\noindent\makebox[2.5in]{\hrulefill} \hfill\makebox[2.0in]{\hrulefill}%
+    \par\noindent\makebox[2.5in][l]{#1}      \hfill\makebox[2.0in][l]{Date}%
+}%
+{
+\setlength{\parindent}{0cm}
+
+
+    \thispagestyle{empty}
+
+    %\large
+
+    {\Large\textbf{{Declaration}}}
+
+    \hrulefill
+
+    \vskip 5mm
+
+    I confirm that I have read and understood the Plymouth University regulations
+    relating to Assessment Offenses and that I am aware of the possible penalties
+    for any breach of these regulations. I confirm that this is my own independent
+    work.
+
+    \vskip 3cm
+    \SignatureAndDate{Candidate: \Author}
+
+    \vskip 1cm
+    \vskip 1cm
+
+    \SignatureAndDate{Supervisor: \Supervisor}
+
+    \vskip 1cm
+
+    \SignatureAndDate{Second Supervisor: \SecondSupervisor}
+
+    \vfill
+
+    \begin{center}
+        {\Large\textbf{{Copyright \& Legal Notice}}}
+    \end{center}
+
+    This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
+    To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/}.
+    %\begin{figure}[h]
+    %    \centering
+    %    \href{http://creativecommons.org/licenses/by-sa/4.0/}{\includegraphics[height=20px]{by-sa}}
+    %\end{figure}
+
+    \vskip 1cm
+
+    The names of actual companies and products mentioned throughout this dissertation
+    are trademarks or registered trademarks of their respective owners.
+}
+
+\restoregeometry

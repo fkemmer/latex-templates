@@ -1,0 +1,91 @@
+\ProvidesPackage{uopAssignment}
+
+\usepackage{scrpage2}
+\usepackage{lastpage}   % ability to reference last page, requires 2 compiles
+\usepackage{framed}     % easiest option to draw frames
+\usepackage{setspace}   % onehalfspacing
+\usepackage[british]{babel}
+\usepackage{graphicx}
+\usepackage{pdfpages}   % http://texblog.org/tag/includepdf/
+\usepackage{hyperref}
+\usepackage{longtable}
+%\usepackage{csquotes}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{afterpage}
+%\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{datetime}
+\usepackage{todonotes}
+\usepackage{listings}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{blindtext} % \[Bb]linddocument or \[bB]lindtext
+
+
+%TODO: indentation, paragraphs
+
+% headlines everywhere
+% top left: title
+% bottom right ``page x of y''
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\normalfont \Title}
+\ofoot{\normalfont Page \textbf{\thepage} of \textbf{\pageref{LastPage}}}
+\setheadsepline[\textwidth]{1.5pt}
+\setfootsepline[\textwidth]{1.5pt}
+
+\onehalfspacing
+
+% having figures surrounded by text
+% usage:
+% \begin{wrapfig}{rRlLiIoO}{$width}
+%           (uppercase for free positioning by latex, lowercase for HERE!)
+%    ... as usual
+% \end{wrapfig}
+\usepackage{wrapfig}
+
+%%%%%%%%%%%%%%%%
+% bibliography %
+%%%%%%%%%%%%%%%%
+% usage in main document:
+% \addbibresource{foo.bib}
+% Lorem ipsum \cite{test} or \parencite{test}
+% \printbibliography
+\usepackage[style=authoryear,
+            %style=apa,         % very strict, less options, e.g. maxcitenames is not working
+            backend=biber,
+            bibencoding=utf8,
+            maxcitenames=3,
+            maxbibnames=99,
+            doi=true,
+            firstinits=true,
+            dashed=false,
+            isbn=false]{biblatex}
+\DeclareNameAlias{sortname}{last-first}                 % having always: Surname, Initial
+%\DeclareFieldFormat[article]{title}{\mkbibemph{#1}}    % make article titles in quotes
+\DeclareFieldFormat[unpublished]{title}{\mkbibemph{#1}} % make unpublished (presentation) titles in quotes
+\renewcommand*{\nameyeardelim}{\addcomma\space}         % adding the f*cking comma
+\DeclareLanguageMapping{british}{british-apa}
+
+% don't display months/day in reference list
+% even if given in database
+% based on http://www.latex-community.org/forum/viewtopic.php?f=50&t=11447
+\AtEveryBibitem{%
+  \clearfield{day}%
+  \clearfield{month}%
+  \clearfield{endday}%
+  \clearfield{endmonth}%
+}
+
+% TODO: Acronyms package
+\usepackage{acronym}
+
+% Known issues
+% * Zotero produces junk
+%   Biber finds "junk output": remove tailing "," from entries
+%
+% * "\x{fffd}" does not map to ascii at /usr/share/perl5/Biber/Output/bbl.pm
+%   \usepackage[backend=biber,bibencoding=utf8]{biblatex}

@@ -1,0 +1,54 @@
+\documentclass[
+                a4paper,
+                12pt,               % default font size
+                toc=index,          % index in toc
+                toc=bibnumbered,    % bib in toc
+                toc=listof,         % lists in toc
+                headsepline,
+                footsepline,
+                headings=small,     
+                open=right,         % Chapters open on right page
+                chapterprefix=off,
+                appendixprefix=on,  % Only uses with KOMA-own \appendix switch
+                ]{scrbook}
+
+\usepackage{uopmaster}
+\addbibresource{bib.bib}
+
+\input{txt/front/metadata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\listoftodos
+\input{txt/front/title}
+
+\frontmatter
+    \input{txt/front/completion}
+    \input{txt/front/abstract}
+    \input{txt/front/dedication}
+    \input{txt/front/acknowledgements}
+
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \lstlistoflistings
+
+    \input{txt/front/acronyms}
+
+\mainmatter
+    \include{txt/main/content}
+
+\backmatter
+    \nocite{*}
+    \printbibliography
+
+\mainmatterstyle
+
+\appendix
+    \appendixpage
+    \include{txt/back/appendix}
+
+\end{document}

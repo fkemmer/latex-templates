@@ -1,0 +1,48 @@
+\documentclass[a4paper, UKenglish, 12pt]{scrartcl}
+
+\usepackage{plymouth_report}
+
+% Metadata -- to generate title page and pdf meta data
+\def\Author{}
+\def\StudentNumber{}
+
+\def\Institute{}
+\def\Studies{}
+
+\def\Title{}
+\def\Module{}
+\def\ModuleLeader{}
+\def\Date{\today}
+\def\Keywords{}
+
+% Copy metadata into PDF
+\hypersetup{  
+  pdfinfo={
+    Author={\Author},
+    Title={\Title},
+    Date={\Date},
+    Keywords={\Keywords},
+  }  
+}
+
+% git information -- if available
+% If a .gitRevision.tex exists, its information will be displayed on
+% the title page. Use this in combination with a git-hook to show the
+% revision on which the document is based on
+\newcommand{\RevisionInfo}{No Revision information available}
+\InputIfFileExists{.gitRevision}{}{}
+
+% Bibliography file
+\addbibresource{bib.bib}
+
+\begin{document}
+    
+    % (manually designed title page)
+    \input{title}
+    
+    % Here goes main text
+    \input{content}
+    
+    \printbibliography
+
+\end{document}

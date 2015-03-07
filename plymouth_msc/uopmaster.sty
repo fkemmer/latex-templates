@@ -1,0 +1,166 @@
+\ProvidesPackage{uopmaster}
+
+% Same font family for headinds as for rest of body
+% still bold
+\addtokomafont{disposition}{\rmfamily}
+% not bold anymore
+%\setkomafont{disposition}{\normalfont}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% Nice chapter pages
+\usepackage{quotchap}
+
+\usepackage{tabularx}
+
+% geometry
+\usepackage{geometry}
+
+% package definitions
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[UKenglish,english]{babel}
+
+\usepackage{array}
+\usepackage[table]{xcolor}
+
+% acronyms
+\usepackage[]{acronym}
+
+% Header/Footer
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\ifoot[\RevisionInfo]{\RevisionInfo} % to be removed before printing
+
+% include complete PDF documents
+\usepackage{pdfpages} 
+
+% Blindtext generator
+\usepackage{blindtext}
+
+% PDF Metadata and links
+\usepackage{hyperref}
+
+% nice tables
+\usepackage{booktabs}
+
+% Listings -- Required for listoflistings
+% Also defines the look of listing. Footnotesize allows ~80chars per line
+\usepackage{listings}
+%\usepackage{MnSymbol} % requires texlive-fonts-extra
+\renewcommand*{\lstlistlistingname}{List of Listings}
+\lstset{
+    %basicstyle=\footnotesize,  %% would screw inlinelistings -.-
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    backgroundcolor=\color{gray},
+}
+\lstset{postbreak=\raisebox{0ex}[0ex][0ex]
+        {\ensuremath{\rcurvearrowse\space}}}
+\lstset{breaklines=true, breakatwhitespace=true}
+
+% Appendices
+% WARNING: Breaks the appendixprefix command
+% WARNING: Still being enabled to use \appendixpage...
+\usepackage[toc,page]{appendix}
+
+% Symbols 
+% \usepackage{bbding} % texlive-fonts-extra
+\newcommand{\yes}{\CheckmarkBold}   % check
+\newcommand{\no}{\XSolidBrush}      % cross
+
+% Set default path for images
+\graphicspath{{./src/fig/}}
+
+% Todos :)
+% must be loaded after xcolor
+% Will be hidden, when "final" option is given
+% use \listoftodos for making a list of todos...
+\usepackage[colorinlistoftodos,
+            textsize=footnotesize,
+            disable]{todonotes}
+
+%%%%%%%%%%%%%%%%
+% bibliography %
+%%%%%%%%%%%%%%%%
+\usepackage[style=authoryear,
+            backend=biber,
+            bibencoding=utf8,
+            maxcitenames=3,
+            maxbibnames=99,
+            doi=true,
+            firstinits=true,
+            uniquename=init,    % avoids warning -- crashes anything?
+            uniquelist=false,
+            dashed=false,
+            isbn=false]{biblatex}
+\setlength\bibinitsep{2\itemsep}
+\DeclareNameAlias{sortname}{last-first}                 % having always: Surname, Initial
+%\DeclareFieldFormat[article]{title}{\mkbibemph{#1}}    % make article titles in quotes
+\DeclareFieldFormat[unpublished]{title}{\mkbibemph{#1}} % make unpublished (presentation) titles in quotes
+\renewcommand*{\nameyeardelim}{\addcomma\space}         % adding the comma between year and author
+\DeclareLanguageMapping{british}{british-apa}
+
+% don't display months/day in reference list, even if given in database
+\AtEveryBibitem{%
+  \clearfield{day}%
+  \clearfield{month}%
+  \clearfield{endday}%
+  \clearfield{endmonth}%
+}
+
+% personal commands
+\newcommand{\fixme}[1]{ % uses todonotes to display a red note at border
+    \todo[color=red,
+        fancyline,
+        caption={\thesection{} \@currentlabelname: FIXME: #1}]{
+        FIXME: #1}
+}
+\newcommand{\ask}[1]{
+    \todo[color=green,
+        fancyline,
+        caption={\thesection{} \@currentlabelname: Ask: #1}]{
+        Ask: #1}
+}
+\newcommand{\findref}[1]{
+    \todo[color=purple,
+        fancyline,
+        caption={\thesection{} \@currentlabelname: REF: #1}]{
+        REF: #1}
+}
+\newcommand{\tbd}[1]{
+    \todo[
+        fancyline,
+        caption={\thesection{} \@currentlabelname: TODO: #1}]{
+        TODO: #1}
+}
+\newcommand{\form}[1]{
+    \todo[color=blue,
+        fancyline,
+        caption={\thesection{} \@currentlabelname: Phrase: #1}]{
+        Phrase: #1}
+}
+\newcommand{\content}[1]{
+    \todo[inline,
+        %color=grey,
+        fancyline,
+        caption={\thesection{} \@currentlabelname: Content: #1}]{
+        Content: #1}
+}
+
+\newcommand{\fullchapref}[1]{\emph{Chapter \ref{#1} -- \nameref{#1}}}
+
+\usepackage{subcaption}
+
+\newcommand{\one}[0]{\texttt{1}}
+\newcommand{\zero}[0]{\texttt{0}}
+
+\newcommand{\cmd}[1]{
+    \colorbox{gray}{\lstinline|#1|}
+}
+
+\newcommand\mainmatterstyle{%
+  \@mainmattertrue
+}
